@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- fonte -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css"/>
+  <!-- css -->
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/skeleton.css" />
+  <title>Minha Biblioteca</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns" style="margin-top: 10%">
+        <h1>Minha Biblioteca</h1>
+        <p>Projeto escolhido na imersão de 30 dias da mentoria do Pedro Marins no qual farei uma biblioteca utilizando <i>Object Constructors</i> e <i>LocalStorage</i>.
+        <br>
+        Você também pode acessar o repositório no <a href="https://github.com/labrysxx/library" target="_blank">GitHub</a> 
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <form action="">
+        <div class="five columns">
+          <label for="name">Livro</label>
+          <input type="text" class="u-full-width" id="name">
+        </div>
+        <div class="five columns">
+          <label for="autor">Autor</label>
+          <input type="text" class="u-full-width" id="autor">
+        </div>
+        <div class="two columns">
+          <label for="status">Status</label>
+          <select name="status" id="status">
+            <option value="read">Lido</option>
+            <option value="not read">Não Lido</option>
+          </select>
+        </div>
+        <input type="submit" value="submit" class="button-primary">
+      </form>
+    </div>
+    <div class="row">
+      <table class="twelve columns">
+        <tr>
+          <th>Nome</th>
+          <th>Autor</th>
+          <th>Status</th>
+          <th></th>
+        </tr>
+        <tbody id="table-body"></tbody>
+      </table>
+    </div>
+  </div>
+  
+</body>
+</html>
