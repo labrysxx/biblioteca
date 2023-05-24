@@ -9,6 +9,7 @@
   <!-- css -->
   <link rel="stylesheet" href="css/normalize.css" />
   <link rel="stylesheet" href="css/skeleton.css" />
+  <link rel="stylesheet" href="css/delete.css">
   <title>Minha Biblioteca</title>
 </head>
 <body>
@@ -16,7 +17,7 @@
     <div class="row">
       <div class="twelve columns" style="margin-top: 10%">
         <h1>Minha Biblioteca</h1>
-        <p>Projeto escolhido na imersão de 30 dias da mentoria do Pedro Marins no qual farei uma biblioteca utilizando <i>Object Constructors</i> e <i>LocalStorage</i>.
+        <p>Projeto escolhido na imersão de 30 dias da mentoria do Pedro Marins no qual farei uma biblioteca utilizando <i>Object Constructors</i> e <i>localStorage</i>.
         <br>
         Você também pode acessar o repositório no <a href="https://github.com/labrysxx/library" target="_blank">GitHub</a> 
         </p>
@@ -35,8 +36,8 @@
         <div class="two columns">
           <label for="status">Status</label>
           <select name="status" id="status">
-            <option value="read">Lido</option>
-            <option value="not read">Não Lido</option>
+            <option>Lido</option>
+            <option>Não Lido</option>
           </select>
         </div>
         <input type="submit" value="submit" class="button-primary">
@@ -55,5 +56,6 @@
     </div>
   </div>
   
+  <script src="js/main.js"></script>
 </body>
 </html>
