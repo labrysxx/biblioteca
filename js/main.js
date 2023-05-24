@@ -24,6 +24,7 @@ const FORM = document.querySelector('form').addEventListener('submit', (e) => {
   e.preventDefault()
   adicionaLivro()
   carregaLivro()
+  limpaFormulario()
 })
 
 class Book {
@@ -43,6 +44,11 @@ function adicionaLivro() {
     livros.push(NOVO_LIVRO)
     atualizaLocalStorage()
   }
+}
+
+function limpaFormulario() {
+  NOME.value = ''
+  AUTOR.value = ''
 }
 
 function atualizaLocalStorage() {
