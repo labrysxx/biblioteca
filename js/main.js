@@ -26,6 +26,17 @@ const FORM = document.querySelector('form').addEventListener('submit', (e) => {
   carregaLivro()
   limpaFormulario()
 })
+const TABLE = document.querySelector('table').addEventListener('click', (e) => {
+  const nomeDoLivro = e.target.parentNode.parentNode.childNodes[1]
+
+  if(e.target.innerHTML === 'delete') {
+    if(confirm(`Você tem certeza de que quer deletar ${nomeDoLivro.innerHTML}?`)) {
+      deletarLivro(encontrarLivro(livros, nomeDoLivro.innerHTML))
+    }
+  }
+  atualizaLocalStorage()
+  carregaLivro()
+})
 
 class Book {
   constructor(nome, autor, status) {
@@ -43,6 +54,21 @@ function adicionaLivro() {
    
     livros.push(NOVO_LIVRO)
     atualizaLocalStorage()
+  }
+}
+
+function deletarLivro(currentBook) {
+  livros.splice(currentBook, 1)
+}
+
+function encontrarLivro(livrosArray, nome) {
+  if(livrosArray.length === 0 || livrosArray === null) {
+    return
+  }
+  for(livro of livrosArray) {
+    if(livro.nome === nome) {
+      return livrosArray.indexOf(livro)
+    }
   }
 }
 
