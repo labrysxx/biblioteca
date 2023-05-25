@@ -58,7 +58,7 @@ function adicionaLivro() {
 }
 
 function deletarLivro(currentBook) {
-  livros.splice(currentBook, 1)
+  livros.splice(currentBook, currentBook + 1)
 }
 
 function encontrarLivro(livrosArray, nome) {
