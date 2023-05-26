@@ -3,17 +3,17 @@ let default_data = [
   {
     nome: 'Roube Como Um Artista',
     autor: 'Austin Kleon',
-    status: 'Lido'
+    status: 'lido'
   },
   {
     nome: 'A Mágica da Arrumação',
     autor: 'Marie Kondo',
-    status: 'Não Lido'
+    status: 'não lido'
   },
   {
     nome: 'Meu Ano de Descanso e Relaxamento',
     autor: 'Ottessa Moshfegh',
-    status: 'Lido'
+    status: 'lido'
   }
 ]
 const NOME = document.getElementById('name')
@@ -28,11 +28,14 @@ const FORM = document.querySelector('form').addEventListener('submit', (e) => {
 })
 const TABLE = document.querySelector('table').addEventListener('click', (e) => {
   const nomeDoLivro = e.target.parentNode.parentNode.childNodes[1]
-
+  
   if(e.target.innerHTML === 'delete') {
     if(confirm(`Você tem certeza de que quer deletar ${nomeDoLivro.innerHTML}?`)) {
-      deletarLivro(encontrarLivro(livros, nomeDoLivro.innerHTML))
+      deletarLivro(encontrarLivro(livros, nomeDoLivro.innerText))
     }
+  } 
+  if(e.target.classList.contains('status-button')) {
+    mudaStatus(encontrarLivro(livros, nomeDoLivro.innerText))
   }
   atualizaLocalStorage()
   carregaLivro()
@@ -61,10 +64,15 @@ function deletarLivro(currentBook) {
   livros.splice(currentBook, currentBook + 1)
 }
 
-function encontrarLivro(livrosArray, nome) {
-  if(livrosArray.length === 0 || livrosArray === null) {
-    return
+function mudaStatus(currentLivro) {
+  if(livros[currentLivro].status === 'lido') {
+    livros[currentLivro].status = 'não lido'
+  } else {
+    livros[currentLivro].status = 'lido'
   }
+}
+
+function encontrarLivro(livrosArray, nome) {
   for(livro of livrosArray) {
     if(livro.nome === nome) {
       return livrosArray.indexOf(livro)
