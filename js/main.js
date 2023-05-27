@@ -37,6 +37,9 @@ const TABLE = document.querySelector('table').addEventListener('click', (e) => {
   if(e.target.classList.contains('status-button')) {
     mudaStatus(encontrarLivro(livros, nomeDoLivro.innerText))
   }
+  if(e.target.classList.contains('editar')) {
+    editaLivro(encontrarLivro(livros, nomeDoLivro.innerText))
+  }
   atualizaLocalStorage()
   carregaLivro()
 })
@@ -60,15 +63,22 @@ function adicionaLivro() {
   }
 }
 
+function editaLivro(currentBook) {
+  NOME.value = livros[currentBook].nome
+  AUTOR.value = livros[currentBook].autor
+  STATUS.value = livros[currentBook].status
+  deletarLivro(currentBook)
+}
+
 function deletarLivro(currentBook) {
   livros.splice(currentBook, currentBook + 1)
 }
 
-function mudaStatus(currentLivro) {
-  if(livros[currentLivro].status === 'lido') {
-    livros[currentLivro].status = 'não lido'
+function mudaStatus(currentBook) {
+  if(livros[currentBook].status === 'lido') {
+    livros[currentBook].status = 'não lido'
   } else {
-    livros[currentLivro].status = 'lido'
+    livros[currentBook].status = 'lido'
   }
 }
 
@@ -107,6 +117,7 @@ function carregaLivro() {
         <td>${livro.autor}</td>
         <td><button class="status-button">${livro.status}</button></td>
         <td><button class="delete">delete</button></td>
+        <td><button class="editar">editar</button></td>
       </tr>
       `;
     TABLE_BODY.insertAdjacentHTML("afterbegin", htmlBook);
