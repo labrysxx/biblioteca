@@ -71,7 +71,7 @@ function editaLivro(currentBook) {
 }
 
 function deletarLivro(currentBook) {
-  livros.splice(currentBook, currentBook + 1)
+  livros.splice(currentBook, 1)
 }
 
 function mudaStatus(currentBook) {
