@@ -3,17 +3,17 @@ let default_data = [
   {
     nome: 'Roube Como Um Artista',
     autor: 'Austin Kleon',
-    status: 'Lido'
+    status: 'lido'
   },
   {
     nome: 'A Mágica da Arrumação',
     autor: 'Marie Kondo',
-    status: 'Não Lido'
+    status: 'não lido'
   },
   {
     nome: 'Meu Ano de Descanso e Relaxamento',
     autor: 'Ottessa Moshfegh',
-    status: 'Lido'
+    status: 'lido'
   }
 ]
 const NOME = document.getElementById('name')
@@ -28,11 +28,15 @@ const FORM = document.querySelector('form').addEventListener('submit', (e) => {
 })
 const TABLE = document.querySelector('table').addEventListener('click', (e) => {
   const nomeDoLivro = e.target.parentNode.parentNode.childNodes[1]
-
+  
   if(e.target.innerHTML === 'delete') {
     if(confirm(`Você tem certeza de que quer deletar ${nomeDoLivro.innerHTML}?`)) {
-      deletarLivro(encontrarLivro(livros, nomeDoLivro.innerHTML))
+      deletarLivro(encontrarLivro(livros, nomeDoLivro.innerText))
     }
+  } else if(e.target.classList.contains('status-button')) {
+    mudaStatus(encontrarLivro(livros, nomeDoLivro.innerText))
+  } else if(e.target.classList.contains('editar')) {
+    editaLivro(encontrarLivro(livros, nomeDoLivro.innerText))
   }
   atualizaLocalStorage()
   carregaLivro()
@@ -57,14 +61,26 @@ function adicionaLivro() {
   }
 }
 
+function editaLivro(currentBook) {
+  NOME.value = livros[currentBook].nome
+  AUTOR.value = livros[currentBook].autor
+  STATUS.value = livros[currentBook].status
+  deletarLivro(currentBook)
+}
+
 function deletarLivro(currentBook) {
   livros.splice(currentBook, 1)
 }
 
-function encontrarLivro(livrosArray, nome) {
-  if(livrosArray.length === 0 || livrosArray === null) {
-    return
+function mudaStatus(currentBook) {
+  if(livros[currentBook].status === 'lido') {
+    livros[currentBook].status = 'não lido'
+  } else {
+    livros[currentBook].status = 'lido'
   }
+}
+
+function encontrarLivro(livrosArray, nome) {
   for(livro of livrosArray) {
     if(livro.nome === nome) {
       return livrosArray.indexOf(livro)
@@ -99,6 +115,7 @@ function carregaLivro() {
         <td>${livro.autor}</td>
         <td><button class="status-button">${livro.status}</button></td>
         <td><button class="delete">delete</button></td>
+        <td><button class="editar">editar</button></td>
       </tr>
       `;
     TABLE_BODY.insertAdjacentHTML("afterbegin", htmlBook);
