@@ -33,11 +33,9 @@ const TABLE = document.querySelector('table').addEventListener('click', (e) => {
     if(confirm(`Você tem certeza de que quer deletar ${nomeDoLivro.innerHTML}?`)) {
       deletarLivro(encontrarLivro(livros, nomeDoLivro.innerText))
     }
-  } 
-  if(e.target.classList.contains('status-button')) {
+  } else if(e.target.classList.contains('status-button')) {
     mudaStatus(encontrarLivro(livros, nomeDoLivro.innerText))
-  }
-  if(e.target.classList.contains('editar')) {
+  } else if(e.target.classList.contains('editar')) {
     editaLivro(encontrarLivro(livros, nomeDoLivro.innerText))
   }
   atualizaLocalStorage()
@@ -71,7 +69,8 @@ function editaLivro(currentBook) {
 }
 
 function deletarLivro(currentBook) {
-  livros.splice(currentBook, 1)
+  console.log(currentBook)
+  livros.splice(currentBook, currentBook + 1)
 }
 
 function mudaStatus(currentBook) {
